@@ -19,6 +19,7 @@ function index({ item }: categoryItemProps) {
 
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate("CategoryDetails", { category: item })}
       testID="category-item"
       style={{
         width: width * 0.25,

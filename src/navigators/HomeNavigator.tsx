@@ -1,25 +1,74 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
+import CategoryFilterScreen from "../screens/CategoryFilterScreen";
+import ProductDetailsScreen from "../screens/ProductDetailsScreen";
+import { Ionicons, Foundation } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
+
 export default function HomeNavigator() {
+  const navigation = useNavigation();
   return (
-      <Stack.Navigator>
-        <Stack.Screen
+    <Stack.Navigator>
+      <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options = {{
-            headerTitle: () => (
-                <Image
-                source={require('../../assets/getirlogo.png')}
-                style={{width:70, height:30}}
-                />
-            ),
-            headerStyle: {backgroundColor:"#5C3EBC"},
+        options={{
+          headerTitle: () => (
+            <Image
+              source={require("../../assets/getirlogo.png")}
+              style={{ width: 70, height: 30 }}
+            />
+          ),
+          headerTintColor: "white",
+          headerBackTitleVisible: false,
+          headerStyle: { backgroundColor: "#5C3EBC" },
         }}
-        />
-      </Stack.Navigator>
+      />
+      <Stack.Screen
+        name="CategoryDetails"
+        component={CategoryFilterScreen}
+        options={{
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 14, color: "#fff" }}>
+              Ürünler
+            </Text>
+          ),
+          headerTintColor: "white",
+          headerBackTitleVisible: false,
+          headerStyle: { backgroundColor: "#5C3EBC" },
+        }}
+      />
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductDetailsScreen}
+        options={{
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 14, color: "#fff" }}>
+              Ürün Detayı
+            </Text>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{ paddingRight: 8 }}>
+              <Foundation name="heart" size={24} color="#32177a" />
+            </TouchableOpacity>
+          ),
+          headerTintColor: "white",
+          headerBackTitleVisible: false,
+          headerStyle: { backgroundColor: "#5C3EBC" },
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ paddingLeft: 12 }}
+            >
+              <Ionicons name="close" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+    </Stack.Navigator>
   );
 }

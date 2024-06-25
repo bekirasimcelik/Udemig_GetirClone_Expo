@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import CategoryItem from "../CategoryItem";
 import categoriesGetir from "../../../assets/categoriesGetir";
+
 function index() {
   const [categories, setCategories] = useState(categoriesGetir);
-
   return (
     <View style={{ backgroundColor: "#F5F5F5" }}>
       <View style={styles.listContainer}>
