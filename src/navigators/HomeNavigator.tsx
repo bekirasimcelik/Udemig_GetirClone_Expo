@@ -5,12 +5,18 @@ import HomeScreen from "../screens/HomeScreen";
 import CategoryFilterScreen from "../screens/CategoryFilterScreen";
 import ProductDetailsScreen from "../screens/ProductDetailsScreen";
 import { Ionicons, Foundation } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useNavigation,
+  getFocusedRouteNameFromRoute,
+} from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
-export default function HomeNavigator() {
-  const navigation = useNavigation();
+function MyStack({ navigation, route }) {
+  React.useLayoutEffect(() => {
+    const tabHiddenRoutes = ["ProductDetails"];
+    const routeName = getFocusedRouteNameFromRoute(route);
+  }, [navigation, route]);
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -71,4 +77,8 @@ export default function HomeNavigator() {
       />
     </Stack.Navigator>
   );
+}
+
+export default function HomeNavigator({ navigation, route }) {
+  return <MyStack navigation={navigation} route={route} />;
 }

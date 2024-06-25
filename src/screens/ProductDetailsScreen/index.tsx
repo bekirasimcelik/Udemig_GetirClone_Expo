@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 
-export default function index() {
+const [product, setProduct] = useState();
+
+export default function index(props) {
+  useEffect(() => {
+    setProduct(props.route.params.product)
+  }, [])
   return (
     <View>
       <Text>Asım</Text>
