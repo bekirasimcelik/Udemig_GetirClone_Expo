@@ -1,4 +1,12 @@
-import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  ImageBackground,
+  ImageBackgroundComponent,
+} from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
@@ -9,6 +17,7 @@ import {
   useNavigation,
   getFocusedRouteNameFromRoute,
 } from "@react-navigation/native";
+import CartScreen from "../screens/CartScreen";
 
 const Stack = createNativeStackNavigator();
 const { width, height } = Dimensions.get("window");
@@ -55,6 +64,7 @@ function MyStack({ navigation, route }) {
           ),
           headerRight: () => (
             <TouchableOpacity
+              onPress={() => navigation.navigate("CartScreen")}
               style={{
                 width: width * 0.22,
                 height: 33,
@@ -69,9 +79,23 @@ function MyStack({ navigation, route }) {
                 style={{ width: 23, height: 23, marginLeft: 6 }}
                 source={require("../../assets/cart.png")}
               />
-              <View style={{height:33, width:4, backgroundColor:'white'}} />
-              <View style={{flex:1,justifyContent:'center', alignItems:'center', borderBottomRightRadius:8, borderTopRightRadius:8}}>
-                <Text style={{color:'#5D3EBD', fontWeight:'bold', fontSize:12}}>{"\u20BA"}24,00</Text>
+              <View
+                style={{ height: 33, width: 4, backgroundColor: "white" }}
+              />
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderBottomRightRadius: 8,
+                  borderTopRightRadius: 8,
+                }}
+              >
+                <Text
+                  style={{ color: "#5D3EBD", fontWeight: "bold", fontSize: 12 }}
+                >
+                  {"\u20BA"}24,00
+                </Text>
               </View>
             </TouchableOpacity>
           ),
@@ -100,6 +124,31 @@ function MyStack({ navigation, route }) {
               style={{ paddingLeft: 12 }}
             >
               <Ionicons name="close" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{
+          headerTintColor: "white",
+          headerBackTitleVisible: false,
+          headerStyle: { backgroundColor: "#5C3EBC" },
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 15 }}>Sepetim</Text>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ paddingLeft: 8 }}
+              onPress={() => navigation.goBack()}
+            >
+              <Ionicons name="close" size={26} color="white" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity style={{paddingRight:8}}>
+              <Ionicons name="trash" size={24} color="white" />
             </TouchableOpacity>
           ),
         }}
