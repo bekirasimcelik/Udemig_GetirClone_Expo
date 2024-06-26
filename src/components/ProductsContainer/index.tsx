@@ -29,7 +29,7 @@ export default function index() {
           backgroundColor: "#fff",
           flexWrap: 'wrap',
           flex:1,
-          paddingVertical: 10,
+          paddingVertical: 12,
         }}
       >
         {productsGetir.slice(2).map((item) => (

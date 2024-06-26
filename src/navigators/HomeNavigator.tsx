@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
@@ -11,11 +11,18 @@ import {
 } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
+const { width, height } = Dimensions.get("window");
 
 function MyStack({ navigation, route }) {
+  const tabHiddenRoutes = ["ProductDetails"];
+
   React.useLayoutEffect(() => {
-    const tabHiddenRoutes = ["ProductDetails"];
     const routeName = getFocusedRouteNameFromRoute(route);
+    if (tabHiddenRoutes.includes(routeName)) {
+      navigation.setOptions({ tabBarStyle: { display: "none" } });
+    } else {
+      navigation.setOptions({ tabBarStyle: { display: "true" } });
+    }
   }, [navigation, route]);
   return (
     <Stack.Navigator>
@@ -38,14 +45,36 @@ function MyStack({ navigation, route }) {
         name="CategoryDetails"
         component={CategoryFilterScreen}
         options={{
+          headerTintColor: "white",
+          headerBackTitleVisible: false,
+          headerStyle: { backgroundColor: "#5C3EBC" },
           headerTitle: () => (
             <Text style={{ fontWeight: "bold", fontSize: 14, color: "#fff" }}>
               Ürünler
             </Text>
           ),
-          headerTintColor: "white",
-          headerBackTitleVisible: false,
-          headerStyle: { backgroundColor: "#5C3EBC" },
+          headerRight: () => (
+            <TouchableOpacity
+              style={{
+                width: width * 0.22,
+                height: 33,
+                backgroundColor: "white",
+                marginRight: width * 0.03,
+                borderRadius: 9,
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                style={{ width: 23, height: 23, marginLeft: 6 }}
+                source={require("../../assets/cart.png")}
+              />
+              <View style={{height:33, width:4, backgroundColor:'white'}} />
+              <View style={{flex:1,justifyContent:'center', alignItems:'center', borderBottomRightRadius:8, borderTopRightRadius:8}}>
+                <Text style={{color:'#5D3EBD', fontWeight:'bold', fontSize:12}}>{"\u20BA"}24,00</Text>
+              </View>
+            </TouchableOpacity>
+          ),
         }}
       />
       <Stack.Screen

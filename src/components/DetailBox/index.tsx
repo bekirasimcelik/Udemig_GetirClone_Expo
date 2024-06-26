@@ -17,14 +17,14 @@ export default function index({ price, name, quantity }: DetailBoxProps) {
           color: "#5D3EBD",
           fontWeight: "bold",
           fontSize: 20,
-          marginTop: 12,
+          marginTop: 10,
         }}
       >
         <Text>{"\u20BA"}</Text>
         {price}
       </Text>
       <Text style={{fontSize:16, fontWeight:'600', marginTop:12}}>{name}</Text>
-      <Text style={{color:'#848897', fontWeight:'600', marginTop:6, paddingBottom: 18}}>{quantity}</Text>
+      <Text style={{color:'#848897', fontWeight:'600', marginTop:6, paddingBottom: 10}}>{quantity}</Text>
     </View>
   );
 }

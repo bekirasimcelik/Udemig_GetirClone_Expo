@@ -20,7 +20,7 @@ export default function index() {
     return (
       <View
         style={{
-          paddingVertical: 12,
+          paddingVertical: 10,
           borderBottomWidth: index === details.length - 1 ? 0 : 0.4,
           borderBottomColor: "lightgray",
           flexDirection: 'row', alignItems:'center', justifyContent:'space-between'
@@ -45,7 +45,7 @@ export default function index() {
       style={{
         backgroundColor: "white",
         paddingHorizontal: 16,
-        paddingVertical: 8,
+        paddingVertical: 10,
       }}
     >
       {details.map((item, index) => (

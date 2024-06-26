@@ -25,9 +25,9 @@ function index({ images }: { images: string[] }) {
         flexDirection: "column",
         alignItems: "center",
         width: "100%",
-        height: height * 0.25,
+        height: height * 0.21,
         backgroundColor: "white",
-        paddingTop: 15,
+        paddingTop: 2,
       }}
     >
       <FlatList
