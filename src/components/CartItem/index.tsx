@@ -10,25 +10,37 @@ const { width, height } = Dimensions.get("window");
 
 export default function index({ product }: CardItemProps) {
   return (
-    <View style={{width:'100%',backgroundColor:'white', }}>
+    <View style={{ width: "100%", backgroundColor: "white" }}>
       <View
         style={{
           height: height * 0.13,
-          width: width* 0.92,
-          marginHorizontal: width* 0.04,
+          width: width * 0.92,
+          marginHorizontal: width * 0.04,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingHorizontal: width*0.04,
+          paddingHorizontal: width * 0.04,
           backgroundColor: "white",
           borderBottomColor: "red",
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            style={{ width: height * 0.09, height: height * 0.09 }}
-            source={{ uri: product.image }}
-          />
+          <View
+            style={{
+              borderWidth: 0.45,
+              borderColor: "lightgrey",
+              borderRadius: 8,
+              padding:4,
+            }}
+          >
+            <Image
+              style={{
+                width: height * 0.09,
+                height: height * 0.09,
+              }}
+              source={{ uri: product.image }}
+            />
+          </View>
           <View style={{ marginLeft: 8 }}>
             <Text
               style={{
