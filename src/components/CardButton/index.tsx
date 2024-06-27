@@ -1,15 +1,17 @@
 import React from "react";
 import { View, Text, Dimensions, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/cartActions";
 
 const { width, height } = Dimensions.get("window");
-
-function index() {
+function index(props) {
   return (
     <TouchableOpacity
+      onPress={() => props.addItemToCart(props.product)}
       style={{
         flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         height: height * 0.1,
         position: "absolute",
         bottom: 0,
@@ -36,5 +38,11 @@ function index() {
     </TouchableOpacity>
   );
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItemToCart: (product: Product) =>
+      dispatch(actions.addToCart({ quantity: 1, product })),
+  };
+};
 
-export default index;
+export default connect(null, mapDispatchToProps)(index);
