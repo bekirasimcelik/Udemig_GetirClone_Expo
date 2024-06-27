@@ -1,14 +1,18 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { Product } from "../../models";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/cartActions";
 
 type CartItemProps = {
   product: Product;
+  quantity: number;
+  removeFromCart: (product:Product) => void;
 };
 
 const { width, height } = Dimensions.get("window");
 
-export default function index({ product }: CardItemProps) {
+function index({ product, quantity, removeFromCart }: CardItemProps) {
   return (
     <View style={{ width: "100%", backgroundColor: "white" }}>
       <View
@@ -30,7 +34,7 @@ export default function index({ product }: CardItemProps) {
               borderWidth: 0.45,
               borderColor: "lightgrey",
               borderRadius: 8,
-              padding:4,
+              padding: 4,
             }}
           >
             <Image
@@ -88,9 +92,11 @@ export default function index({ product }: CardItemProps) {
             shadowColor: "gray",
           }}
         >
-          <View style={{ flex: 1, alignItems: "center" }}>
+          <TouchableOpacity
+          onPress={() => removeFromCart(product)}
+          style={{ flex: 1, alignItems: "center" }}>
             <Text>-</Text>
-          </View>
+          </TouchableOpacity>
           <View
             style={{
               flex: 1,
@@ -101,7 +107,7 @@ export default function index({ product }: CardItemProps) {
             }}
           >
             <Text style={{ color: "white", fontWeight: "bold", fontSize: 12 }}>
-              1
+              {quantity}
             </Text>
           </View>
           <View style={{ flex: 1, alignItems: "center" }}>
@@ -112,3 +118,12 @@ export default function index({ product }: CardItemProps) {
     </View>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeFromCart: (product: Product) =>
+      dispatch(actions.removeFromCart(product)),
+  };
+};
+
+export default connect(null,mapDispatchToProps)(index);
