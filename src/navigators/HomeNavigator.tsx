@@ -23,7 +23,7 @@ const Stack = createNativeStackNavigator();
 const { width, height } = Dimensions.get("window");
 
 function MyStack({ navigation, route }) {
-  const tabHiddenRoutes = ["ProductDetails"];
+  const tabHiddenRoutes = ["ProductDetails", "CartScreen"];
 
   React.useLayoutEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route);

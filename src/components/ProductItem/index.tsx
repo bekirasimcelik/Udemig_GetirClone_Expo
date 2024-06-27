@@ -77,6 +77,27 @@ export default function index({ item }: productItemType) {
       >
         {item.miktar}
       </Text>
+
+      <TouchableOpacity
+        style={{
+          position: "absolute",
+          borderWidth: 0.3,
+          right: -10,
+          top: -10,
+          borderRadius: 5,
+          shadowRadius: 3.8,
+          shadowOpacity: 0.05,
+          borderColor: "lightgrey",
+          backgroundColor: "white",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          width: 30,
+          height: 30,
+        }}
+      >
+        <Entypo name="plus" size={22} color="#5D3EBD" />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 }
